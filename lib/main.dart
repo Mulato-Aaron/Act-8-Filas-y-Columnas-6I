@@ -8,7 +8,7 @@ class AppSteam extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Steam',
+      title: 'Steam de Mulato',
       home: Juegos(),
       debugShowCheckedModeBanner: false,
     );
@@ -21,101 +21,112 @@ class Juegos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF0B0E14),
       appBar: AppBar(
         title: const Text(
-          'Steam del Mulato',
-          style: TextStyle(color: Colors.white),
+          'STEAM DE MULATO',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
+          ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.gamepad, color: Colors.white),
-          onPressed: () {},
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.hail, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.wind_power, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.cabin, color: Colors.white),
-            onPressed: () {},
-          ),
+        backgroundColor: const Color(0xFF171a21),
+        elevation: 0,
+        actions: const [
+          Icon(Icons.gamepad, color: Color(0xFF66c0f4)),
+          SizedBox(width: 15),
+          Icon(Icons.videogame_asset, color: Color(0xFF66c0f4)),
+          SizedBox(width: 15),
         ],
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xFF1b2838),
-                Color(0xFF2a475e),
-              ],
-            ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              // Fila 1: Azul Oscuro y Verde Neón
+              Expanded(
+                child: Row(
+                  children: [
+                    _buildGamerCard('VIDEOJUEGOS', Icons.sports_esports, const Color(0xFF0052D4), const Color(0xFF4364F7)),
+                    _buildGamerCard('DESARROLLADORES', Icons.engineering, const Color(0xFF1D976C), const Color(0xFF93F9B9)),
+                  ],
+                ),
+              ),
+              // Fila 2: Morado y Amarillo/Naranja
+              Expanded(
+                child: Row(
+                  children: [
+                    _buildGamerCard('PUBLISHERS', Icons.business, const Color(0xFF8E2DE2), const Color(0xFF4A00E0)),
+                    _buildGamerCard('COMPRAS', Icons.local_offer, const Color(0xFFF2994A), const Color(0xFFF2C94C)),
+                  ],
+                ),
+              ),
+              // Fila 3: Verde Petróleo y Rojo Oscuro
+              Expanded(
+                child: Row(
+                  children: [
+                    _buildGamerCard('USUARIOS', Icons.person, const Color(0xFF00467F), const Color(0xFFA5CC82)),
+                    _buildGamerCard('TECNICOS', Icons.settings, const Color(0xFFCB3066), const Color(0xFF161616)),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
-      body: ListView(
-  padding: const EdgeInsets.all(12.0), // Espaciado alrededor de la lista
-  children: [
-    // Elemento 1: Notificaciones
-    ListTile(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      tileColor: Colors.blue.shade50,
-      leading: const Icon(Icons.notifications, color: Colors.blue),
-      title: const Text('Notificaciones', style: TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: const Text('Revisa tus mensajes recientes'),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-    ),
-    const SizedBox(height: 10), // Espacio entre elementos
-
-    // Elemento 2: Perfil
-    ListTile(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      tileColor: Colors.purple.shade50,
-      leading: const Icon(Icons.person, color: Colors.purple),
-      title: const Text('Mi Perfil', style: TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: const Text('Edita tu información personal'),
-      trailing: const Icon(Icons.edit, color: Colors.purple),
-    ),
-    const SizedBox(height: 10),
-
-    // Elemento 3: Seguridad
-    ListTile(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      tileColor: Colors.orange.shade50,
-      leading: const Icon(Icons.security, color: Colors.orange),
-      title: const Text('Seguridad', style: TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: const Text('Cambia tu contraseña'),
-      trailing: const Icon(Icons.lock_outline),
-    ),
-    const SizedBox(height: 10),
-
-    // Elemento 4: Favoritos
-    ListTile(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      tileColor: Colors.red.shade50,
-      leading: const Icon(Icons.library_add, color: Colors.red),
-      title: const Text('Biblioteca', style: TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: const Text('Tus artículos guardados'),
-      trailing: const Icon(Icons.bookmark_border),
-    ),
-    const SizedBox(height: 10),
-
-    // Elemento 5: Configuración
-    ListTile(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      tileColor: Colors.teal.shade50,
-      leading: const Icon(Icons.settings, color: Colors.teal),
-      title: const Text('Ajustes', style: TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: const Text('Configuración avanzada'),
-      trailing: const Icon(Icons.tune),
-    ),
-  ],
-),
+    
     );
   }
-}// fin clase Juegpos
+  // Widget para las tarjetas con degradados y bordes brillantes
+  Widget _buildGamerCard(String titulo, IconData icono, Color colorInicio, Color colorFin) {
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          // Degradado de colores según tu petición
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              colorInicio.withOpacity(0.8),
+              colorFin.withOpacity(0.4),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(20.0),
+          // Borde sutil para el efecto de "luz"
+          border: Border.all(
+            color: colorInicio.withOpacity(0.5),
+            width: 2,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: colorInicio.withOpacity(0.2),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icono, size: 40, color: Colors.white),
+            const SizedBox(height: 12),
+            Text(
+              titulo,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+                letterSpacing: 1.1,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
